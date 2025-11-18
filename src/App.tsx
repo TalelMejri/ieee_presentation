@@ -6,8 +6,6 @@ import HomePage from "./components/layouts/home";
 import { TeamSection } from "./components/layouts/team";
 import ContactSection from "./components/layouts/contact";
 import MembersOfTheMonth from "./components/layouts/member_months";
-import TestimonialsSection from "./components/layouts/TestimonialsSection";
-import SplashScreen from "./components/layouts/splashScreen";
 import EventsWorkshopsSection from "./components/layouts/events_workshops_section";
 
 function App() {

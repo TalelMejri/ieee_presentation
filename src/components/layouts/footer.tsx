@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail, MapPin, Send } from "lucide-react";
 import cs_logo from "@/assets/Full_White.png";
 
 function FooterLayout() {

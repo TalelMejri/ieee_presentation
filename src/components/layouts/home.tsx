@@ -1,6 +1,6 @@
 // components/pages/home.tsx
 import { motion } from "framer-motion";
-import { ArrowRight, Users, Calendar, GraduationCap, Images, Mail, Sparkles, Star, Target } from "lucide-react";
+import { ArrowRight, Users, Sparkles, Star, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import DecryptedText from "../DecryptedText";
 import one from "@/assets/hero_section/1.jpg"

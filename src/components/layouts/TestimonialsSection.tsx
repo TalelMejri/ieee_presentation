@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { Star, Quote, Users, Heart } from "lucide-react";
-import { useState } from "react";
 
 const testimonials = [
   {
@@ -60,7 +59,6 @@ const testimonials = [
 ];
 
 function TestimonialsSection() {
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
   const StarRating = ({ rating }: { rating: number }) => {
     return (
