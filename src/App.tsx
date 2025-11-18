@@ -8,6 +8,7 @@ import ContactSection from "./components/layouts/contact";
 import MembersOfTheMonth from "./components/layouts/member_months";
 import EventsWorkshopsSection from "./components/layouts/events_workshops_section";
 
+
 function App() {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
