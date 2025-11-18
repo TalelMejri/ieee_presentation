@@ -19,7 +19,6 @@ function App() {
           <EventsWorkshopsSection />
           <MembersOfTheMonth/>
           <ContactSection/>
-          {/* <TestimonialsSection/> */}
           <FooterLayout />
         </div>
       </LanguageProvider>
