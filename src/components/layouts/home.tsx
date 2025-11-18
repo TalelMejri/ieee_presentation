@@ -7,7 +7,7 @@ import one from "@/assets/hero_section/1.jpg"
 import two from "@/assets/hero_section/2.jpg"
 import three from "@/assets/hero_section/3.jpeg"
 import four from "@/assets/hero_section/4.jpg"
-import five from "@/assets/hero_section/5.jpg"
+import five from "@/assets/hero_section/Capture d'écran 2025-11-18 031116.png"
 const HomePage = () => {
   // Floating background elements data
   const floatingElements = [
