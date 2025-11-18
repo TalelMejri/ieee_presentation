@@ -1,11 +1,32 @@
-import { Button } from "@/components/ui/button"
- 
+import FooterLayout from "./components/layouts/footer";
+import HeaderLayout from "./components/layouts/header";
+import { ThemeProvider } from "./contexts/ThemeProvider";
+import { LanguageProvider } from "./i18n";
+import HomePage from "./components/layouts/home";
+import { TeamSection } from "./components/layouts/team";
+import ContactSection from "./components/layouts/contact";
+import MembersOfTheMonth from "./components/layouts/member_months";
+import TestimonialsSection from "./components/layouts/TestimonialsSection";
+import SplashScreen from "./components/layouts/splashScreen";
+import EventsWorkshopsSection from "./components/layouts/events_workshops_section";
+
 function App() {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-    </div>
-  )
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+      <LanguageProvider>
+        <div className="min-h-screen  bg-linear-to-br from-blue-50 via-white to-orange-50 dark:from-blue-950/30 dark:via-gray-900 dark:to-orange-950/30 flex flex-col transition-colors duration-300">
+          <HeaderLayout />
+          <HomePage/>
+          <TeamSection/>
+          <EventsWorkshopsSection />
+          <MembersOfTheMonth/>
+          <ContactSection/>
+          {/* <TestimonialsSection/> */}
+          <FooterLayout />
+        </div>
+      </LanguageProvider>
+    </ThemeProvider>
+  );
 }
- 
-export default App
+
+export default App;
