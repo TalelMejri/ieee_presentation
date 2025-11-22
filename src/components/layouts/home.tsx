@@ -7,6 +7,7 @@ import two from "@/assets/hero_section/2.jpg"
 import three from "@/assets/hero_section/3.jpeg"
 import four from "@/assets/hero_section/4.jpg"
 import five from "@/assets/hero_section/Capture d'écran 2025-11-18 031116.png"
+import FloatingChatButton from "../chatroom/floating-chat-button";
 
 const HomePage = () => {
   const floatingElements = [
@@ -47,7 +48,7 @@ const HomePage = () => {
   return (
     <div className="min-h-screen" id="home">
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-orange-50 dark:from-blue-950/30 dark:via-gray-900 dark:to-orange-950/30">
-
+        <FloatingChatButton />
         <div className="absolute inset-0 bg-grid-blue-900/[0.02] bg-[size:40px_40px]" />
 
         <div className="absolute top-1/4 -left-20 w-80 h-80 bg-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
@@ -156,7 +157,7 @@ const HomePage = () => {
                   Future Leaders
                 </motion.span>
               </h1>
-              
+
               {/* Description Section */}
               <motion.div
                 initial={{ opacity: 0 }}
@@ -170,7 +171,7 @@ const HomePage = () => {
                   Where <span className="text-blue-600 dark:text-blue-400 font-bold drop-shadow-sm">innovation</span> meets{" "}
                   <span className="text-orange-600 dark:text-orange-400 font-bold drop-shadow-sm">community</span> at IEEE CS ENICarthage SBC.
                 </motion.p>
-                
+
                 {/* History Section */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
