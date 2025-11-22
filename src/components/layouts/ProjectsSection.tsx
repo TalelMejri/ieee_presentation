@@ -281,8 +281,8 @@ function ProjectsSection() {
                                                             whileHover={{ scale: 1.05 }}
                                                             whileTap={{ scale: 0.95 }}
                                                             className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 ${edition.status === 'completed'
-                                                                    ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg'
-                                                                    : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                                                                ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg'
+                                                                : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
                                                                 }`}
                                                         >
                                                             <Eye className="w-3 h-3" />
@@ -405,7 +405,7 @@ function ProjectsSection() {
                 >
                     <div className="inline-flex flex-col sm:flex-row items-center gap-4 px-8 py-6 bg-gradient-to-r from-[#008dfe]/10 to-[#faa41a]/10 rounded-2xl border border-[#008dfe]/20 backdrop-blur-sm">
                         <p className="text-gray-700 dark:text-gray-300 font-medium">
-                          Stay tuned for more exciting projects and innovations from our Computer Society!
+                            Stay tuned for more exciting projects and innovations from our Computer Society!
                         </p>
                     </div>
                 </motion.div>

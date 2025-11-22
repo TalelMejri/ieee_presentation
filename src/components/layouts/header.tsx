@@ -12,7 +12,8 @@ function HeaderLayout() {
         { label: "Home", href: "#home" },
         { label: "Team", href: "#team" },
         { label: "Activities", href: "#event" },
-        { label: "CSTAM 2.0", href: "#cstam" },
+         { label: "Projects", href: "#projects" },
+        { label: "CSTAM 2.0", href: "https://cstam.ieee.tn/"},
     ];
     return (
         <>

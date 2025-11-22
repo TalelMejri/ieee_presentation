@@ -47,18 +47,14 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen" id="home">
-      {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-orange-50 dark:from-blue-950/30 dark:via-gray-900 dark:to-orange-950/30">
 
-        {/* Enhanced Background Grid */}
         <div className="absolute inset-0 bg-grid-blue-900/[0.02] bg-[size:40px_40px]" />
 
-        {/* Vibrant Gradient Orbs */}
         <div className="absolute top-1/4 -left-20 w-80 h-80 bg-blue-500/30 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-orange-500/30 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-blue-400/20 to-orange-400/20 rounded-full blur-3xl animate-pulse delay-500"></div>
 
-        {/* Enhanced Background Photos with Better Visibility */}
         {backgroundPhotos.map((photo, index) => (
           <motion.div
             key={index}
@@ -73,15 +69,12 @@ const HomePage = () => {
                 alt={`Team activity ${index + 1}`}
                 className="w-full h-full object-cover rounded-xl shadow-2xl transition-all duration-500 group-hover:scale-105"
               />
-              {/* Enhanced glass overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-orange-500/10 backdrop-blur-[1px] rounded-xl border border-white/30 group-hover:border-orange-300/50 transition-all duration-500"></div>
-              {/* Shine effect on hover */}
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
             </div>
           </motion.div>
         ))}
 
-        {/* Enhanced Floating Animated Elements */}
         {floatingElements.map((element, index) => {
           const IconComponent = element.icon;
           return (
@@ -108,14 +101,12 @@ const HomePage = () => {
           );
         })}
 
-        {/* Main Content */}
         <div className="relative z-10 text-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
           >
-            {/* Enhanced Badge */}
             <motion.div
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
@@ -142,8 +133,6 @@ const HomePage = () => {
                 </span>
               </div>
             </motion.div>
-
-            {/* Enhanced Main Heading */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -168,8 +157,6 @@ const HomePage = () => {
                   Future Leaders
                 </motion.span>
               </h1>
-
-              {/* Enhanced Animated Subtitle */}
               <motion.p
                 className="text-lg sm:text-xl md:text-2xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed font-medium"
                 initial={{ opacity: 0 }}
@@ -180,8 +167,6 @@ const HomePage = () => {
                 <span className="text-orange-600 dark:text-orange-400 font-bold drop-shadow-sm">community</span> at IEEE CS ENICarthage SBC.
               </motion.p>
             </motion.div>
-
-            {/* Enhanced Stats Bar */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -211,8 +196,6 @@ const HomePage = () => {
                 </motion.div>
               ))}
             </motion.div>
-
-            {/* Enhanced CTA Buttons */}
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
               initial={{ opacity: 0, y: 30 }}

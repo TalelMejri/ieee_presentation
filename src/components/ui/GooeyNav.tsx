@@ -388,6 +388,8 @@ const GooeyNav: React.FC<GooeyNavProps> = ({
               >
                 <a
                   href={item.href}
+                  target={item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
                   onClick={(e) => handleClick(e, index)}
                   onKeyDown={(e) => handleKeyDown(e, index)}
                   className="outline-none py-3 px-6 inline-block font-semibold relative z-10 transition-all duration-300"
