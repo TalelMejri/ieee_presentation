@@ -1,4 +1,3 @@
-// src/components/layouts/InstallPrompt.tsx
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import {
@@ -20,27 +19,18 @@ const InstallPrompt: React.FC = () => {
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        // Detect iOS
         const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent) && !('MSStream' in window);
         setIsIOS(isIOSDevice);
-
-        // Handle install prompt
         const handleBeforeInstallPrompt = (e: Event) => {
             e.preventDefault();
             setDeferredPrompt(e as BeforeInstallPromptEvent);
             setShowModal(true);
         };
-
-        // Show iOS prompt if not in standalone mode
         if (isIOSDevice && !window.matchMedia('(display-mode: standalone)').matches) {
             setShowModal(true);
         }
-
         window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
-
-        // Initialize notifications when app is ready
         notificationManager.initialize();
-
         return () => {
             window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
         };
@@ -51,7 +41,6 @@ const InstallPrompt: React.FC = () => {
             deferredPrompt.prompt();
             const { outcome } = await deferredPrompt.userChoice;
             if (outcome === 'accepted') {
-                // Send welcome notification after install
                 setTimeout(() => {
                     notificationManager.sendWelcomeNotification();
                 }, 2000);

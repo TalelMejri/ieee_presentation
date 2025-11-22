@@ -17,11 +17,12 @@ import { useEffect } from "react";
 function App() {
   useEffect(() => {
     const open = localStorage.getItem("test");
-    if (open === "true") {
+    if (!open) {
       {
         setTimeout(() => {
           simpleNotificationManager.sendEventRegistrationNotification("Test Workshop");
         }, 2000);
+        localStorage.setItem("test", "true");
       }
     }
   }, []);

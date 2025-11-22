@@ -1,4 +1,3 @@
-// src/services/notificationService.ts
 import type { 
   NotificationData, 
   NotificationOptions, 
