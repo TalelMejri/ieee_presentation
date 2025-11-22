@@ -1,4 +1,3 @@
-// src/services/notificationManager.ts
 import notificationService from './simpleNotificationService';
 import { NOTIFICATION_TEMPLATES, SPECIAL_DATES } from './notificationTemplates';
 import type { NotificationStatus } from '@/types/notifications';

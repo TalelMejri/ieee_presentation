@@ -1,15 +1,14 @@
-import type { 
-  NotificationData, 
-  NotificationOptions, 
-  StoredNotification, 
+import type {
+  NotificationData,
+  NotificationOptions,
+  StoredNotification,
   ScheduledNotification,
-  NotificationStatus 
+  NotificationStatus
 } from '@/types/notifications';
 
 class NotificationService {
   private swRegistration: ServiceWorkerRegistration | null = null;
 
-  // Register service worker
   async registerServiceWorker(): Promise<boolean> {
     try {
       if (!('serviceWorker' in navigator)) {
@@ -26,7 +25,6 @@ class NotificationService {
     }
   }
 
-  // Initialize notification system
   async initialize(): Promise<boolean> {
     try {
       const registered = await this.registerServiceWorker();
@@ -40,13 +38,11 @@ class NotificationService {
     }
   }
 
-  // Request notification permission
   async requestPermission(): Promise<boolean> {
     try {
       if (Notification.permission === 'granted') {
         return true;
       }
-
       const permission = await Notification.requestPermission();
       localStorage.setItem('notificationPermission', permission);
       return permission === 'granted';
@@ -56,7 +52,6 @@ class NotificationService {
     }
   }
 
-  // Show local notification - FIXED WITH NULL CHECKS
   async showNotification(title: string, options: NotificationOptions = {}): Promise<boolean> {
     try {
       if (!this.swRegistration) {
@@ -72,7 +67,6 @@ class NotificationService {
         if (!granted) return false;
       }
 
-      // Add null check before using swRegistration
       if (!this.swRegistration) {
         console.error('❌ Service Worker registration is null');
         return false;
@@ -81,11 +75,10 @@ class NotificationService {
       const defaultOptions: NotificationOptions = {
         icon: '/images/android/android-launchericon-192-192.png',
         badge: '/images/android/android-launchericon-72-72.png',
-        tag: 'cstam-notification',
+        tag: 'cs-notification',
         ...options
       };
 
-      // Now this.swRegistration is guaranteed to be not null
       await this.swRegistration.showNotification(title, defaultOptions);
       this.logNotification({ title, ...defaultOptions });
       return true;
@@ -99,9 +92,9 @@ class NotificationService {
   private logNotification(notification: { title: string; body?: string; data?: NotificationData }): void {
     try {
       const notifications: StoredNotification[] = JSON.parse(
-        localStorage.getItem('cstamNotifications') || '[]'
+        localStorage.getItem('csNotifications') || '[]'
       );
-      
+
       const notificationLog: StoredNotification = {
         id: Date.now().toString(),
         title: notification.title,
@@ -110,11 +103,11 @@ class NotificationService {
         read: false,
         data: notification.data
       };
-      
+
       notifications.unshift(notificationLog);
       if (notifications.length > 50) notifications.splice(50);
-      
-      localStorage.setItem('cstamNotifications', JSON.stringify(notifications));
+
+      localStorage.setItem('csNotifications', JSON.stringify(notifications));
       this.updateUnreadCount();
     } catch (error) {
       console.error('❌ Error logging notification:', error);
@@ -125,12 +118,12 @@ class NotificationService {
   private updateUnreadCount(): void {
     try {
       const notifications: StoredNotification[] = JSON.parse(
-        localStorage.getItem('cstamNotifications') || '[]'
+        localStorage.getItem('csNotifications') || '[]'
       );
       const unreadCount = notifications.filter(n => !n.read).length;
-      
-      document.title = unreadCount > 0 
-        ? `(${unreadCount}) IEEE CS ENICarthage` 
+
+      document.title = unreadCount > 0
+        ? `(${unreadCount}) IEEE CS ENICarthage`
         : 'IEEE CS ENICarthage';
     } catch (error) {
       console.error('❌ Error updating unread count:', error);
@@ -141,13 +134,13 @@ class NotificationService {
   markAsRead(notificationId: string): void {
     try {
       const notifications: StoredNotification[] = JSON.parse(
-        localStorage.getItem('cstamNotifications') || '[]'
+        localStorage.getItem('csNotifications') || '[]'
       );
       const notification = notifications.find(n => n.id === notificationId);
-      
+
       if (notification) {
         notification.read = true;
-        localStorage.setItem('cstamNotifications', JSON.stringify(notifications));
+        localStorage.setItem('csNotifications', JSON.stringify(notifications));
         this.updateUnreadCount();
       }
     } catch (error) {
@@ -159,14 +152,14 @@ class NotificationService {
   markAllAsRead(): void {
     try {
       const notifications: StoredNotification[] = JSON.parse(
-        localStorage.getItem('cstamNotifications') || '[]'
+        localStorage.getItem('csNotifications') || '[]'
       );
-      
+
       notifications.forEach(notification => {
         notification.read = true;
       });
-      
-      localStorage.setItem('cstamNotifications', JSON.stringify(notifications));
+
+      localStorage.setItem('csNotifications', JSON.stringify(notifications));
       this.updateUnreadCount();
     } catch (error) {
       console.error('❌ Error marking all as read:', error);
@@ -176,7 +169,7 @@ class NotificationService {
   // Get all notifications
   getNotifications(): StoredNotification[] {
     try {
-      return JSON.parse(localStorage.getItem('cstamNotifications') || '[]');
+      return JSON.parse(localStorage.getItem('csNotifications') || '[]');
     } catch (error) {
       console.error('❌ Error getting notifications:', error);
       return [];
@@ -191,16 +184,16 @@ class NotificationService {
 
   // Schedule notification - FIXED WITH NULL CHECKS
   scheduleNotification(
-    title: string, 
-    body: string, 
-    triggerTime: Date, 
+    title: string,
+    body: string,
+    triggerTime: Date,
     data: NotificationData = {}
   ): void {
     try {
       const scheduled: ScheduledNotification[] = JSON.parse(
         localStorage.getItem('scheduledNotifications') || '[]'
       );
-      
+
       const notification: ScheduledNotification = {
         id: Date.now().toString(),
         title,
@@ -209,7 +202,7 @@ class NotificationService {
         data,
         created: new Date().toISOString()
       };
-      
+
       scheduled.push(notification);
       localStorage.setItem('scheduledNotifications', JSON.stringify(scheduled));
       console.log('📅 Notification scheduled:', notification);
@@ -225,24 +218,24 @@ class NotificationService {
         localStorage.getItem('scheduledNotifications') || '[]'
       );
       const now = new Date();
-      
+
       const toSend = scheduled.filter(item => {
         const triggerTime = new Date(item.triggerTime);
         return triggerTime <= now;
       });
-      
+
       for (const item of toSend) {
         await this.showNotification(item.title, {
           body: item.body,
           data: item.data
         });
       }
-      
+
       const remaining = scheduled.filter(item => {
         const triggerTime = new Date(item.triggerTime);
         return triggerTime > now;
       });
-      
+
       localStorage.setItem('scheduledNotifications', JSON.stringify(remaining));
     } catch (error) {
       console.error('❌ Error checking scheduled notifications:', error);
@@ -254,7 +247,7 @@ class NotificationService {
     setInterval(() => {
       this.checkScheduledNotifications();
     }, 60000);
-    
+
     this.checkScheduledNotifications();
   }
 
