@@ -1,4 +1,3 @@
-// components/pages/home.tsx
 import { motion } from "framer-motion";
 import { ArrowRight, Users, Sparkles, Star, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -8,8 +7,8 @@ import two from "@/assets/hero_section/2.jpg"
 import three from "@/assets/hero_section/3.jpeg"
 import four from "@/assets/hero_section/4.jpg"
 import five from "@/assets/hero_section/Capture d'écran 2025-11-18 031116.png"
+
 const HomePage = () => {
-  // Floating background elements data
   const floatingElements = [
     { icon: Sparkles, delay: 0, duration: 3, x: "10%", y: "20%" },
     { icon: Star, delay: 1, duration: 4, x: "85%", y: "25%" },
@@ -129,16 +128,16 @@ const HomePage = () => {
                     parentClassName="all-letters"
                     encryptedClassName="encrypted"
                   />
-
                 </span>
               </div>
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
             >
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black mb-6 leading-tight">
+              <h1 className="text-4xl sm:text-4xl md:text-4xl lg:text-6xl font-black mb-6 leading-tight">
                 <motion.span
                   className="bg-gradient-to-r from-blue-600 via-blue-500 to-orange-500 bg-clip-text text-transparent"
                   initial={{ opacity: 0, x: -50 }}
@@ -157,20 +156,44 @@ const HomePage = () => {
                   Future Leaders
                 </motion.span>
               </h1>
-              <motion.p
-                className="text-lg sm:text-xl md:text-2xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed font-medium"
+              
+              {/* Description Section */}
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1 }}
+                className="mb-8 max-w-4xl mx-auto"
               >
-                Where <span className="text-blue-600 dark:text-blue-400 font-bold drop-shadow-sm">innovation</span> meets{" "}
-                <span className="text-orange-600 dark:text-orange-400 font-bold drop-shadow-sm">community</span> at IEEE CS ENICarthage SBC.
-              </motion.p>
+                <motion.p
+                  className="text-lg sm:text-xl md:text-2xl lg:text-2xl text-gray-700 dark:text-gray-300 mb-8 leading-relaxed font-medium"
+                >
+                  Where <span className="text-blue-600 dark:text-blue-400 font-bold drop-shadow-sm">innovation</span> meets{" "}
+                  <span className="text-orange-600 dark:text-orange-400 font-bold drop-shadow-sm">community</span> at IEEE CS ENICarthage SBC.
+                </motion.p>
+                
+                {/* History Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.1 }}
+                  className="bg-white/60 dark:bg-gray-900/60 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-blue-200/40 dark:border-blue-400/20 shadow-xl"
+                >
+                  <motion.p
+                    className="text-base md:text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-center italic"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1.3 }}
+                  >
+                    The IEEE Computer Society IEEE CS ENICarthage was established in 2012 at the National Engineering School of Carthage. We are part of the IEEE Tunisia Section, Region 8. Our goal is to empower ENICarthage students in computer science and provide unique opportunities for them to excel.
+                  </motion.p>
+                </motion.div>
+              </motion.div>
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.2 }}
+              transition={{ delay: 1.4 }}
               className="flex flex-wrap justify-center gap-6 md:gap-12 mb-12"
             >
               {[
@@ -183,7 +206,7 @@ const HomePage = () => {
                   key={stat.label}
                   initial={{ scale: 0, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 1.4 + index * 0.1, type: "spring" }}
+                  transition={{ delay: 1.6 + index * 0.1, type: "spring" }}
                   className="text-center group cursor-pointer"
                   whileHover={{ scale: 1.05 }}
                 >
@@ -196,11 +219,12 @@ const HomePage = () => {
                 </motion.div>
               ))}
             </motion.div>
+
             <motion.div
               className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.6 }}
+              transition={{ delay: 1.8 }}
             >
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -216,8 +240,6 @@ const HomePage = () => {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </motion.div>
-
-         
             </motion.div>
 
             {/* Enhanced Scroll Indicator */}
