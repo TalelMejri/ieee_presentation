@@ -12,7 +12,7 @@ function HeaderLayout() {
         { label: "Home", href: "#home" },
         { label: "Team", href: "#team" },
         { label: "Activities", href: "#event" },
-        { label: "Contact", href: "#contact" },
+        { label: "CSTAM 2.0", href: "#cstam" },
     ];
     return (
         <>

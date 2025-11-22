@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Code, Podcast, Globe, Rocket, ExternalLink, ChevronLeft, ChevronRight, BookOpen, Video, Users, Play, GraduationCap, Eye } from "lucide-react";
+import { Code, Podcast, Globe, Rocket, ExternalLink, ChevronLeft, ChevronRight, BookOpen, Video, Play, GraduationCap, Eye } from "lucide-react";
 import { useState } from "react";
 import code_spectrum1 from "@/assets/projects/codespectrum1.png"
 import code_spectrum12 from "@/assets/projects/codespectrum12.png"
