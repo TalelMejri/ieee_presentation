@@ -24,7 +24,6 @@ class NotificationManager {
     }
   }
 
-  // Show welcome on first visit
   private showWelcomeIfFirstTime(): void {
     const hasSeenWelcome = localStorage.getItem('hasSeenWelcome');
     if (!hasSeenWelcome) {
@@ -35,21 +34,18 @@ class NotificationManager {
     }
   }
 
-  // Setup special dates checking
   private setupSpecialDates(): void {
     setInterval(() => {
       this.checkSpecialDates();
     }, 24 * 60 * 60 * 1000);
-    
+
     this.checkSpecialDates();
   }
 
-  // Check for special dates
   private checkSpecialDates(): void {
     const today = new Date();
     const todayMD = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
 
-    // Check birthdays
     SPECIAL_DATES.BIRTHDAYS.forEach(person => {
       if (person.date === todayMD) {
         const template = NOTIFICATION_TEMPLATES.BIRTHDAY(person.name);
@@ -57,7 +53,6 @@ class NotificationManager {
       }
     });
 
-    // Check anniversaries
     SPECIAL_DATES.ANNIVERSARIES.forEach(anniversary => {
       const anniversaryMD = anniversary.date.substring(5);
       if (anniversaryMD === todayMD) {
@@ -67,7 +62,6 @@ class NotificationManager {
       }
     });
 
-    // Check holidays
     SPECIAL_DATES.HOLIDAYS.forEach(holiday => {
       if (holiday.date === todayMD) {
         const template = NOTIFICATION_TEMPLATES.HOLIDAY(holiday.name);
@@ -76,12 +70,11 @@ class NotificationManager {
     });
   }
 
-  // Schedule for today
   private scheduleForToday(title: string, body: string, data: any = {}): void {
     const now = new Date();
     const scheduledTime = new Date(now);
     scheduledTime.setHours(10, 0, 0, 0);
-    
+
     if (scheduledTime < now) {
       scheduledTime.setDate(scheduledTime.getDate() + 1);
     }
@@ -89,12 +82,11 @@ class NotificationManager {
     notificationService.scheduleNotification(title, body, scheduledTime, data);
   }
 
-  // Public methods with better error handling
   async sendWelcomeNotification(): Promise<boolean> {
     if (!this.initialized) {
       await this.initialize();
     }
-    
+
     const template = NOTIFICATION_TEMPLATES.WELCOME;
     return await notificationService.showNotification(template.title, {
       body: template.body,
@@ -106,7 +98,7 @@ class NotificationManager {
     if (!this.initialized) {
       await this.initialize();
     }
-    
+
     const template = NOTIFICATION_TEMPLATES.EVENT_REGISTRATION(eventName);
     return await notificationService.showNotification(template.title, {
       body: template.body,
@@ -119,7 +111,7 @@ class NotificationManager {
     if (!this.initialized) {
       await this.initialize();
     }
-    
+
     const template = NOTIFICATION_TEMPLATES.EVENT_REMINDER(eventName, timeLeft);
     return await notificationService.showNotification(template.title, {
       body: template.body,
@@ -132,7 +124,7 @@ class NotificationManager {
     if (!this.initialized) {
       await this.initialize();
     }
-    
+
     return await notificationService.showNotification(title, { body, data });
   }
 
@@ -156,7 +148,6 @@ class NotificationManager {
     notificationService.markAllAsRead();
   }
 
-  // Check if notification system is ready
   isReady(): boolean {
     return this.initialized && notificationService.isReady();
   }

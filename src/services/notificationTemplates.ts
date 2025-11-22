@@ -10,7 +10,7 @@ export interface NotificationTemplate {
 
 export const NOTIFICATION_TEMPLATES = {
   WELCOME: {
-    title: '🎉 Welcome to CSTAM!',
+    title: ' Welcome ',
     body: 'Thank you for installing our app. Stay tuned for exciting events and workshops!',
     data: { url: '/' }
   } as NotificationTemplate,
@@ -56,7 +56,6 @@ export const NOTIFICATION_TEMPLATES = {
   })
 };
 
-// Special dates
 export const SPECIAL_DATES = {
   BIRTHDAYS: [
     { name: 'Sahar Jleli', date: '03-15' },
@@ -64,7 +63,7 @@ export const SPECIAL_DATES = {
   ],
   
   ANNIVERSARIES: [
-    { name: 'Sahar Jleli', date: '2020-09-01', years: 4 },
+    { name: 'Sahar Jleli', date: '2003-11-22', years: 22 },
     { name: 'IEEE CS ENICarthage', date: '2012-01-01', years: 12 }
   ],
   

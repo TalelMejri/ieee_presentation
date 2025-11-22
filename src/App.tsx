@@ -11,14 +11,15 @@ import TestimonialsSection from "./components/layouts/TestimonialsSection";
 import AwardsSection from "./components/layouts/AwardsSection";
 import ProjectsSection from "./components/layouts/ProjectsSection";
 import SocialMediaSection from "./components/layouts/SocialMedia";
+import simpleNotificationManager from '@/services/simpleNotificationManager';
 import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
-    // simpleNotificationManager.initialize();
-    // setTimeout(() => {
-    //   simpleNotificationManager.sendCustomNotification("Test Notification", "This is a test notification body.");
-    // }, 5000);
+    simpleNotificationManager.initialize();
+    setTimeout(() => {
+      simpleNotificationManager.sendEventRegistrationNotification("CyberSecurity");
+    }, 5000);
 
   }, []);
   return (
