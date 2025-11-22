@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Linkedin, Mail, MapPin, Send } from "lucide-react";
+import { Facebook, Github, Instagram, Linkedin, Mail, MapPin, Send, Youtube } from "lucide-react";
 import cs_logo from "@/assets/Full_White.png";
 
 function FooterLayout() {
@@ -8,11 +8,11 @@ function FooterLayout() {
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-[#008dfe]/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#faa41a]/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 relative">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 items-start">
           {/* Brand Section */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -25,7 +25,7 @@ function FooterLayout() {
               className="h-16 w-auto object-contain"
             />
             <p className="text-sm text-gray-300 leading-relaxed max-w-sm">
-              Empowering future leaders through technology, innovation, and community. 
+              Empowering future leaders through technology, innovation, and community.
               Join us to learn, share, and grow together in the world of engineering and technology.
             </p>
 
@@ -35,6 +35,8 @@ function FooterLayout() {
                 { icon: Linkedin, href: "https://www.linkedin.com/company/ieee-cs-enicarthage/", label: "LinkedIn" },
                 { icon: Facebook, href: "https://www.facebook.com/ieee.cs.enicarthage", label: "Facebook" },
                 { icon: Instagram, href: "https://www.instagram.com/ieee_cs_enicarthage_/", label: "Instagram" },
+                { icon: Youtube, href: "https://www.youtube.com/@ieee_cs_enicarthage", label: "YouTube" },
+                { icon: Github, href: "https://github.com/IEEECSENICarthage", label: "GitHub" }
               ].map((social, index) => (
                 <motion.a
                   key={social.label}
@@ -52,7 +54,7 @@ function FooterLayout() {
               ))}
             </div>
           </motion.div>
-          
+
           {/* Quick Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -78,7 +80,7 @@ function FooterLayout() {
               ))}
             </nav>
           </motion.div>
-          
+
           {/* Resources */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -104,7 +106,7 @@ function FooterLayout() {
               ))}
             </nav>
           </motion.div>
-          
+
           {/* Contact & Newsletter */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -117,10 +119,10 @@ function FooterLayout() {
               <div className="w-2 h-2 bg-gradient-to-r from-[#008dfe] to-[#faa41a] rounded-full"></div>
               Stay Connected
             </h4>
-            
+
             {/* Contact Info */}
             <div className="space-y-4">
-              <motion.div 
+              <motion.div
                 whileHover={{ x: 5 }}
                 className="flex items-center gap-3 text-sm text-gray-300"
               >
@@ -132,7 +134,7 @@ function FooterLayout() {
                   <div>2035 Charguia II, Tunis</div>
                 </div>
               </motion.div>
-              
+
               <motion.a
                 href="mailto:enicarthage.ieee.cs@gmail.com"
                 whileHover={{ x: 5 }}
@@ -180,18 +182,10 @@ function FooterLayout() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4"
+          className="mt-12 pt-8 border-t border-white/10 flex  items-center justify-center gap-4"
         >
           <div className="text-gray-400 text-sm text-center md:text-left">
             © {new Date().getFullYear()} IEEE CS ENICarthage Student Branch Chapter. All rights reserved.
-          </div>
-          
-        
-          
-          <div className="flex items-center gap-6 text-xs text-gray-400">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-            <a href="#" className="hover:text-white transition-colors">Cookie Policy</a>
           </div>
         </motion.div>
       </div>

@@ -4,12 +4,13 @@ import { ThemeProvider } from "./contexts/ThemeProvider";
 import { LanguageProvider } from "./i18n";
 import HomePage from "./components/layouts/home";
 import { TeamSection } from "./components/layouts/team";
-import ContactSection from "./components/layouts/contact";
 import MembersOfTheMonth from "./components/layouts/member_months";
 import EventsWorkshopsSection from "./components/layouts/events_workshops_section";
 import InstallPrompt from "./components/layouts/InstallPrompt";
 import TestimonialsSection from "./components/layouts/TestimonialsSection";
 import AwardsSection from "./components/layouts/AwardsSection";
+import ProjectsSection from "./components/layouts/ProjectsSection";
+import SocialMediaSection from "./components/layouts/SocialMedia";
 
 
 function App() {
@@ -23,9 +24,10 @@ function App() {
           <TeamSection />
           <EventsWorkshopsSection />
           <AwardsSection />
+          <ProjectsSection />
           <MembersOfTheMonth />
           <TestimonialsSection />
-          <ContactSection />
+          <SocialMediaSection/>
           <FooterLayout />
         </div>
       </LanguageProvider>
