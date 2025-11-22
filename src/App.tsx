@@ -16,10 +16,14 @@ import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
-    setTimeout(() => {
-      simpleNotificationManager.sendEventRegistrationNotification("CyberSecurity");
-    }, 5000);
-
+    const open = localStorage.getItem("test");
+    if (open === "true") {
+      {
+        setTimeout(() => {
+          simpleNotificationManager.sendEventRegistrationNotification("Test Workshop");
+        }, 2000);
+      }
+    }
   }, []);
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
