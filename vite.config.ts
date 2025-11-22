@@ -9,28 +9,33 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+
   build: {
-    outDir: 'dist',
-    assetsDir: 'assets',
-    emptyOutDir: true,
+    chunkSizeWarningLimit: 1000,
+    target: 'esnext',
+    modulePreload: {
+      polyfill: false
+    },
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          ui: ['framer-motion', 'lucide-react']
-        },
-        chunkFileNames: 'assets/js/[name]-[hash].js',
-        entryFileNames: 'assets/js/[name]-[hash].js',
-        assetFileNames: ({ name }) => {
-          if (/\.(gif|jpe?g|png|svg)$/.test(name ?? '')) {
-            return 'assets/images/[name]-[hash][extname]'
-          }
-          if (/\.css$/.test(name ?? '')) {
-            return 'assets/css/[name]-[hash][extname]'
-          }
-          return 'assets/[name]-[hash][extname]'
-        }
+        format: 'es',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
       }
+    }
+  },
+  base: './',
+  server: {
+    port: 3000,
+    headers: {
+      'Content-Type': 'application/javascript'
+    }
+  },
+  preview: {
+    port: 4173,
+    headers: {
+      'Content-Type': 'application/javascript'
     }
   }
 })
