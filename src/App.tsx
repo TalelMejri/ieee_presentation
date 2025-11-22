@@ -11,20 +11,20 @@ import TestimonialsSection from "./components/layouts/TestimonialsSection";
 import AwardsSection from "./components/layouts/AwardsSection";
 import ProjectsSection from "./components/layouts/ProjectsSection";
 import SocialMediaSection from "./components/layouts/SocialMedia";
-import simpleNotificationManager from '@/services/simpleNotificationManager';
+// import simpleNotificationManager from '@/services/simpleNotificationManager';
 import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
-    const open = localStorage.getItem("test");
-    if (!open) {
-      {
-        setTimeout(() => {
-          simpleNotificationManager.sendEventRegistrationNotification("Test Workshop");
-        }, 2000);
-        localStorage.setItem("test", "true");
-      }
-    }
+    // const open = localStorage.getItem("test");
+    // if (!open) {
+    //   {
+    //     setTimeout(() => {
+    //       simpleNotificationManager.sendEventRegistrationNotification("Test Workshop");
+    //     }, 2000);
+    //     localStorage.setItem("test", "true");
+    //   }
+    // }
   }, []);
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
