@@ -1,41 +1,100 @@
 import { motion } from "framer-motion";
-import { Star, Award, Calendar } from "lucide-react";
-import issra from "@/assets/member_month/issra.png"
-import omar from "@/assets/member_month/omar.jpg"
-import ines from "@/assets/member_month/ines.png"
-const membersOfTheMonth = [
-  {
-    id: 1,
-    name: "Issra Akrout",
-    role: "Member",
-    image: issra,
-    department: "",
-    quote: "Great things are done by a series of small things brought together."
+import { Star, Award, Calendar, ChevronDown } from "lucide-react";
+import { useState } from "react";
+import issra from "@/assets/member_month/issra.png";
+import omar from "@/assets/member_month/omar.jpg";
+import ines from "@/assets/member_month/ines.png";
+import eya from "@/assets/member_month/september2025/eya.png"
+import narmine from "@/assets/member_month/september2025/narmine.jpg"
+import wassim from "@/assets/member_month/september2025/wassim.jpg"
+import sahar from "@/assets/member_month/february2025/sahar.png"
+const allMonthsData = {
+  "october-2024": {
+    month: "October 2025",
+    members: [
+      {
+        id: 1,
+        name: "Issra Akrout",
+        role: "Member",
+        image: issra,
+        quote: "Great things are done by a series of small things brought together.",
+      },
+      {
+        id: 2,
+        name: "Omar Karoui",
+        role: "Member",
+        image: omar,
+        quote: "Excellence is not a skill, it's an attitude.",
+      },
+      {
+        id: 3,
+        name: "Ines Kalia",
+        role: "Member",
+        image: ines,
+        quote: "The only way to do great work is to love what you do.",
+      }
+    ]
   },
-  {
-    id: 2,
-    name: "Omar Karoui",
-    role: "Member",
-    image: omar,
-    quote: "Excellence is not a skill, it's an attitude."
+  "september-2024": {
+    month: "September 2025",
+    members: [
+      {
+        id: 1,
+        name: "Eya Ben Hassine",
+        role: "Member",
+        image: eya,
+        quote: "Innovation distinguishes between a leader and a follower.",
+      },
+      {
+        id: 2,
+        name: "Nermine Ouada",
+        role: "Member",
+        image: narmine,
+        quote: "Creativity is intelligence having fun.",
+      },
+      {
+        id: 3,
+        name: "Wassim Gallali",
+        role: "Member",
+        image: wassim,
+        quote: "Creativity is intelligence having fun.",
+      }
+    ]
   },
-  {
-    id: 3,
-    name: "Ines Kalia",
-    role: "Member ",
-    image: ines,
-    department: "",
-    quote: "The only way to do great work is to love what you do."
+  "february-2024": {
+    month: "February 2025",
+    members: [
+      {
+        id: 1,
+        name: "Issra Akrout",
+        role: "Member",
+        image: issra,
+        quote: "The way to get started is to quit talking and begin doing.",
+      },
+      {
+        id: 2,
+        name: "Sahar Jleli",
+        role: "Member",
+        image: sahar,
+        quote: "Excellence is not a skill, it's an attitude.",
+      }
+    ]
   }
-];
+};
 
 function MembersOfTheMonth() {
+  const [selectedMonth, setSelectedMonth] = useState("october-2024");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
+  const currentData = allMonthsData[selectedMonth as keyof typeof allMonthsData];
+  const monthKeys = Object.keys(allMonthsData);
+
   return (
-    <section className="w-full py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
+    <section className="w-full py-20 px-4 sm:px-6 lg:px-8 bg-linear-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-[#008dfe]/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#faa41a]/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-      
+
       {/* Floating Stars */}
       <div className="absolute top-20 right-20">
         <motion.div
@@ -63,20 +122,65 @@ function MembersOfTheMonth() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
+          {/* Month Selection */}
           <motion.div
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             transition={{ delay: 0.2, type: "spring" }}
-            className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-[#faa41a]/30 rounded-full shadow-lg mb-6"
+            className="inline-flex flex-col items-center gap-4 mb-6"
           >
-            <Calendar className="w-5 h-5 text-[#faa41a]" />
-            <span className="text-sm font-semibold bg-gradient-to-r from-[#008dfe] to-[#faa41a] bg-clip-text text-transparent">
-              October 2024
-            </span>
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className="flex items-center gap-3 px-6 py-3 bg-white/80 dark:bg-gray-800/80 backdrop-blur-lg border border-[#faa41a]/30 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+              >
+                <Calendar className="w-5 h-5 text-[#faa41a]" />
+                <span className="text-sm font-semibold bg-linear-to-r from-[#008dfe] to-[#faa41a] bg-clip-text text-transparent">
+                  {currentData.month}
+                </span>
+                <ChevronDown
+                  size={16}
+                  className={`text-[#faa41a] transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''
+                    }`}
+                />
+              </button>
+
+              {/* Dropdown Menu */}
+              {isDropdownOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl shadow-2xl z-50 backdrop-blur-lg"
+                >
+                  {monthKeys.map((monthKey, index) => (
+                    <button
+                      key={monthKey}
+                      onClick={() => {
+                        setSelectedMonth(monthKey);
+                        setIsDropdownOpen(false);
+                      }}
+                      className={`w-full px-6 py-4 text-left hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 ${selectedMonth === monthKey
+                        ? 'bg-[#008dfe]/10 text-[#008dfe] dark:text-[#008dfe] font-semibold'
+                        : 'text-gray-700 dark:text-gray-200'
+                        } ${index === 0 ? 'rounded-t-xl' : ''
+                        } ${index === monthKeys.length - 1 ? 'rounded-b-xl' : 'border-b border-gray-100 dark:border-gray-700'
+                        }`}
+                    >
+                      {allMonthsData[monthKey as keyof typeof allMonthsData].month}
+                      {monthKey === "october-2024" && (
+                        <span className="ml-2 px-2 py-1 text-xs bg-linear-to-r from-[#008dfe] to-[#faa41a] text-white rounded-full">
+                          Current
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </div>
           </motion.div>
 
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-4">
-            Members of the <span className="bg-gradient-to-r from-[#008dfe] to-[#faa41a] bg-clip-text text-transparent">Month</span>
+            Members of the <span className="bg-linear-to-r from-[#008dfe] to-[#faa41a] bg-clip-text text-transparent">Month</span>
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Celebrating outstanding contributions and exceptional dedication from our brightest stars
@@ -84,8 +188,13 @@ function MembersOfTheMonth() {
         </motion.div>
 
         {/* Members Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {membersOfTheMonth.map((member, index) => (
+        <div className={`grid gap-8 ${currentData.members.length === 1
+          ? 'grid-cols-1 max-w-md mx-auto'
+          : currentData.members.length === 2
+            ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto'
+            : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+          }`}>
+          {currentData.members.map((member, index) => (
             <motion.div
               key={member.id}
               initial={{ opacity: 0, y: 50 }}
@@ -95,74 +204,52 @@ function MembersOfTheMonth() {
               className="group relative"
             >
               {/* Card */}
-              <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden border border-gray-200 dark:border-gray-700 group-hover:scale-105 group-hover:border-[#008dfe]/30">
+              <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden border border-gray-200 dark:border-gray-700 group-hover:scale-105 group-hover:border-[#008dfe]/30 h-full flex flex-col">
                 {/* Badge */}
                 <div className="absolute top-4 right-4 z-10">
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="w-12 h-12 bg-gradient-to-br from-[#faa41a] to-[#ff8c00] rounded-full flex items-center justify-center shadow-lg"
+                    className="w-12 h-12 bg-linear-to-br from-[#faa41a] to-[#ff8c00] rounded-full flex items-center justify-center shadow-lg"
                   >
                     <Award className="w-6 h-6 text-white" />
                   </motion.div>
                 </div>
 
-                {/* Image Container */}
-                <div className="relative h-64 overflow-hidden">
+                {/* Image Container with Better Handling */}
+                <div className="relative h-72 overflow-hidden bg-gray-100 dark:bg-gray-700">
                   <img
                     src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = `https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face&auto=format`;
+                    }}
                   />
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  
-                  {/* Department Badge */}
-                  <div className="absolute bottom-4 left-4">
-                    <span className="px-3 py-1 bg-[#008dfe] text-white text-xs font-semibold rounded-full backdrop-blur-sm">
-                      {member.department}
-                    </span>
-                  </div>
+                  {/* linear Overlay */}
+                  <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent"></div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
+                <div className="p-6 flex-1 flex flex-col">
                   {/* Name and Role */}
-                  <div className="mb-4">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+                  <div className="mb-4 text-center">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                       {member.name}
                     </h3>
-                    <p className="text-[#008dfe] font-semibold">{member.role}</p>
+                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-linear-to-r from-[#008dfe]/10 to-[#faa41a]/10 rounded-full border border-[#008dfe]/20">
+                      <div className="w-2 h-2 bg-linear-to-r from-[#008dfe] to-[#faa41a] rounded-full"></div>
+                      <p className="text-[#008dfe] font-semibold text-sm">{member.role}</p>
+                    </div>
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="mb-4 p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg border-l-4 border-[#faa41a]">
-                    <p className="text-sm text-gray-600 dark:text-gray-300 italic">
-                      "{member.quote}"
+                  <blockquote className="text-center p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-[#faa41a]/20">
+                    <div className="text-[#faa41a] text-lg mb-2">"</div>
+                    <p className="text-gray-600 dark:text-gray-300 italic text-sm leading-relaxed">
+                      {member.quote}
                     </p>
                   </blockquote>
-
-                  {/* Achievements */}
-                  <div className="space-y-2">
-                    {/* <h4 className="text-sm font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-                      <Star className="w-4 h-4 text-[#faa41a]" />
-                      Key Achievements
-                    </h4> */}
-                    {/* <ul className="space-y-1">
-                      {member.achievements.map((achievement, idx) => (
-                        <motion.li
-                          key={idx}
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ delay: 0.5 + idx * 0.1 }}
-                          viewport={{ once: true }}
-                          className="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-400"
-                        >
-                          <div className="w-1.5 h-1.5 bg-[#008dfe] rounded-full mt-1.5 flex-shrink-0"></div>
-                          <span>{achievement}</span>
-                        </motion.li>
-                      ))}
-                    </ul> */}
-                  </div>
 
                   {/* Decorative Elements */}
                   <div className="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-[#008dfe] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -170,7 +257,7 @@ function MembersOfTheMonth() {
                 </div>
 
                 {/* Shine Effect */}
-                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                <div className="absolute inset-0 rounded-3xl bg-linear-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </div>
             </motion.div>
           ))}
@@ -188,16 +275,25 @@ function MembersOfTheMonth() {
             Congratulations to our outstanding members! Your dedication inspires us all.
           </p>
           <motion.div
-            className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-gradient-to-r from-[#008dfe]/10 to-[#faa41a]/10 rounded-full border border-[#008dfe]/20"
+            className="inline-flex items-center gap-2 mt-4 px-4 py-2 bg-linear-to-r from-[#008dfe]/10 to-[#faa41a]/10 rounded-full border border-[#008dfe]/20"
             whileHover={{ scale: 1.05 }}
           >
             <Star className="w-4 h-4 text-[#faa41a]" />
             <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
-              Next selection: November 2024
+              {selectedMonth === "october-2024"
+                ? "Next selection: November 2025"
+                : `Viewing: ${currentData.month}`
+              }
             </span>
           </motion.div>
         </motion.div>
       </div>
+      {isDropdownOpen && (
+        <div
+          className="fixed inset-0 z-40"
+          onClick={() => setIsDropdownOpen(false)}
+        />
+      )}
     </section>
   );
 }
