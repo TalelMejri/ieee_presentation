@@ -8,7 +8,6 @@ const urlsToCache = [
   '/images/android/android-launchericon-512-512.png',
 ];
 
-// Install service worker
 self.addEventListener('install', (event) => {
   console.log('🔔 Service Worker installed');
   event.waitUntil(
@@ -19,7 +18,6 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
-// Activate service worker
 self.addEventListener('activate', (event) => {
   console.log('🔔 Service Worker activated');
   event.waitUntil(
@@ -37,18 +35,13 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch event - handle different MIME types
 self.addEventListener('fetch', (event) => {
-  // Skip non-GET requests
   if (event.request.method !== 'GET') return;
 
-  // Handle module scripts specifically
   if (event.request.destination === 'script') {
     event.respondWith(
       caches.match(event.request).then((response) => {
-        // Return cached version or fetch from network
         return response || fetch(event.request).then((fetchResponse) => {
-          // Clone the response to cache it
           const responseToCache = fetchResponse.clone();
           caches.open(CACHE_NAME).then((cache) => {
             cache.put(event.request, responseToCache);
@@ -56,7 +49,6 @@ self.addEventListener('fetch', (event) => {
           return fetchResponse;
         });
       }).catch(() => {
-        // Fallback for script loading errors
         return new Response(
           'console.error("Failed to load module script");',
           {
@@ -68,7 +60,6 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Default handling for other resources
   event.respondWith(
     caches.match(event.request).then((response) => {
       return response || fetch(event.request);
@@ -76,7 +67,6 @@ self.addEventListener('fetch', (event) => {
   );
 });
 
-// ... rest of your push notification handlers remain the same
 self.addEventListener('push', (event) => {
   // Your existing push notification code
 });
