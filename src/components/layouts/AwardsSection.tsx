@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Award, Trophy, Star, Medal, Zap, ChevronLeft, ChevronRight } from "lucide-react";
+import { Award, Trophy, Star, Medal, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import chapter_of_month from "@/assets/awards/chapter of the Month in Area 6 for April 2024.jpg"
 import educationWeek from "@/assets/awards/outstanding_edcuation_week.jpg"
@@ -8,7 +8,6 @@ import cstam1 from "@/assets/awards/cstam1.jpg"
 import csttam2 from "@/assets/awards/cstam2.jpg"
 import cs_hero from "@/assets/awards/cs_hero.jpg"
 import cs_hero2 from "@/assets/awards/CS_hero2.jpg"
-import { desc } from "framer-motion/client";
 const awards = [
     {
         id: 2,
