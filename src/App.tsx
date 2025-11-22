@@ -16,7 +16,6 @@ import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
-    simpleNotificationManager.initialize();
     setTimeout(() => {
       simpleNotificationManager.sendEventRegistrationNotification("CyberSecurity");
     }, 5000);
