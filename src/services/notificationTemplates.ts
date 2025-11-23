@@ -63,7 +63,7 @@ export const SPECIAL_DATES = {
   ],
   
   ANNIVERSARIES: [
-    { name: 'Sahar Jleli', date: '2003-11-22', years: 22 },
+    { name: 'Sahar Jleli', date: '2003-01-01', years: 22 },
     { name: 'IEEE CS ENICarthage', date: '2012-01-01', years: 12 }
   ],
   
