@@ -3,7 +3,7 @@ import { Star, Award, Calendar, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import issra from "@/assets/member_month/issra.png";
 import omar from "@/assets/member_month/omar.jpg";
-import ines from "@/assets/member_month/ines.png";
+import ines from "@/assets/member_month/ines.jpg";
 import eya from "@/assets/member_month/september2025/eya.png"
 import narmine from "@/assets/member_month/september2025/narmine.jpg"
 import wassim from "@/assets/member_month/september2025/wassim.jpg"
