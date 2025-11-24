@@ -1,4 +1,5 @@
-const CACHE_NAME = 'v1';
+// public/service-worker.js
+const CACHE_NAME = 'v2'; // Changez le nom pour invalider l'ancien cache
 const urlsToCache = [
   '/',
   '/index.html',
@@ -7,17 +8,14 @@ const urlsToCache = [
   '/images/android/android-launchericon-512-512.png',
 ];
 
-// Liste des types de ressources à cacher
-const cacheableTypes = ['script', 'style', 'document', 'image'];
-
 self.addEventListener('install', (event) => {
   console.log('🔔 Service Worker installed');
+  self.skipWaiting();
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then((cache) => cache.addAll(urlsToCache))
       .catch(console.error)
   );
-  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
@@ -43,67 +41,38 @@ self.addEventListener('fetch', (event) => {
   // Ne pas intercepter les méthodes non-GET
   if (request.method !== 'GET') return;
   
-  // Ignorer les schémas non supportés
-  const unsupportedSchemes = [
-    'chrome-extension:',
-    'chrome:',
-    'data:',
-    'blob:',
-    'file:'
-  ];
-  
-  if (unsupportedSchemes.some(scheme => request.url.startsWith(scheme))) {
+  // Ignorer les requêtes non-HTTP/HTTPS
+  const url = new URL(request.url);
+  if (!['http:', 'https:'].includes(url.protocol)) {
     return;
   }
 
-  // Gestion spéciale pour les scripts
-  if (request.destination === 'script') {
-    event.respondWith(handleScriptRequest(request));
+  // Ignorer les requêtes Vite HMR en développement
+  if (url.pathname.includes('@vite') || url.pathname.includes('@react-refresh')) {
     return;
   }
 
-  // Pour les autres ressources
   event.respondWith(
-    caches.match(request).then((response) => {
-      return response || fetch(request);
+    caches.match(request).then((cachedResponse) => {
+      // Si en ligne, fetch et cache
+      if (navigator.onLine) {
+        return fetch(request).then((networkResponse) => {
+          // Ne cacher que les réponses réussies
+          if (networkResponse.status === 200) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(request, responseClone);
+            });
+          }
+          return networkResponse;
+        }).catch(() => {
+          // Si fetch échoue, retourner le cache
+          return cachedResponse || new Response('Network error', { status: 408 });
+        });
+      } else {
+        // Hors ligne, retourner le cache
+        return cachedResponse || new Response('Offline', { status: 408 });
+      }
     })
   );
-});
-
-async function handleScriptRequest(request) {
-  try {
-    // Essayer d'abord le cache
-    const cachedResponse = await caches.match(request);
-    if (cachedResponse) {
-      return cachedResponse;
-    }
-
-    // Sinon, fetch depuis le réseau
-    const networkResponse = await fetch(request);
-    
-    // Vérifier si la réponse est valide pour la mise en cache
-    if (networkResponse.ok && networkResponse.status === 200) {
-      const cache = await caches.open(CACHE_NAME);
-      await cache.put(request, networkResponse.clone());
-    }
-    
-    return networkResponse;
-  } catch (error) {
-    console.error('Failed to fetch script:', error);
-    
-    // Retourner une réponse JavaScript vide en cas d'erreur
-    return new Response('// Script load failed', {
-      status: 200,
-      headers: { 'Content-Type': 'application/javascript' }
-    });
-  }
-}
-
-// Vos gestionnaires d'événements push existants
-self.addEventListener('push', (event) => {
-  // Votre code push existant
-});
-
-self.addEventListener('notificationclick', (event) => {
-  // Votre code notification click existant
 });
