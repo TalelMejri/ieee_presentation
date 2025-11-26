@@ -6,6 +6,7 @@ import ines from "@/assets/feedbacks/ines.jpg";
 import ahmed from "@/assets/feedbacks/ahmed.jpg"
 import omar from "@/assets/feedbacks/omar.jpg"
 import ayoub from "@/assets/feedbacks/ayoub.jpg"
+import iheb from "@/assets/feedbacks/iheb.jpg"
 const testimonials = [
   {
     id: 1,
@@ -54,6 +55,14 @@ const testimonials = [
     rating: 5,
     image: ayoub,
     text: "IEEE ENICARTHAGE SB and specially our CS chapter is one of the most active and exceptional SBC'S 🔥🔥(congress , workshops , events ) we have everything here 🧡🧡"
+  },
+  {
+    id: 7,
+    name: "Iheb Marzouki",
+    role: "Chairman AESS Chapter",
+    rating: 5,
+    image: iheb,
+    text: "What an  amazing work , hope all of the success for CS chapter , specialy the Chair "
   }
 ];
 
