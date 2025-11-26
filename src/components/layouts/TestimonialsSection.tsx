@@ -2,6 +2,10 @@ import { motion } from "framer-motion";
 import { Star, Quote, Users, Heart, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 import issra from "@/assets/member_month/issra.png"
+import ines from "@/assets/feedbacks/ines.jpg";
+import ahmed from "@/assets/feedbacks/ahmed.jpg"
+import omar from "@/assets/feedbacks/omar.jpg"
+import ayoub from "@/assets/feedbacks/ayoub.jpg"
 const testimonials = [
   {
     id: 1,
@@ -16,9 +20,41 @@ const testimonials = [
     name: "Sahar Jleli",
     role: "Member",
     image: "",
-    rating: 4,
+    rating: 5,
     text: "Joining IEEE CS ENICarthage has been a transformative experience for me. The community is incredibly supportive, and I've had the chance to work on exciting projects that have enhanced my skills and confidence.",
   },
+  {
+    id: 3,
+    name: "Ines Kalia",
+    role: "Member",
+    image: ines,
+    rating: 5,
+    text: "I want to thank the CS IEEE ENICarthage for this amazing opportunity. It was a valuable experience that allowed me to learn, grow, and connect with inspiring people. Truly grateful for the support and the chance to be part of this journey!"
+  },
+  {
+    id: 4,
+    name: "Ltayef Ahmed",
+    role: "Member",
+    image: ahmed,
+    rating: 5,
+    text: "Joining the IEEE Computer Society Chapter SBC has been a valuable experience for me. It allowed me to connect with motivated students, discover new perspectives in computing, and take part in activities that strengthened both my technical and soft skills. Being part of this community encouraged me to stay curious, collaborate more, and push myself to grow professionally. I’m grateful for the opportunities and support it has provided so far."
+  },
+  {
+    id: 5,
+    name: "Omar Karoui",
+    role: "Member",
+    rating: 5,
+    image: omar,
+    text: "I don't just thank you for the great work you do, but I especially thank you for the knowledge you imparted. I have learned so much from you, and the experience has been truly enlightening. Thank you for being such fantastic mentors"
+  },
+  {
+    id: 6,
+    name: "Mohamed Ayoub Dababi",
+    role: "Member",
+    rating: 5,
+    image: ayoub,
+    text: "IEEE ENICARTHAGE SB and specially our CS chapter is one of the most active and exceptional SBC'S 🔥🔥(congress , workshops , events ) we have everything here 🧡🧡"
+  }
 ];
 
 function TestimonialsSection() {
@@ -208,7 +244,7 @@ function TestimonialsSection() {
                           !testimonial.image ? (
                             <div className="w-12 h-12 rounded-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center border-2 border-[#008dfe]/20">
                               <span className="text-gray-500 dark:text-gray-400 font-semibold">
-                                {testimonial.name.charAt(0)+""+testimonial.name.split(" ")[1].charAt(0)}
+                                {testimonial.name.charAt(0) + "" + testimonial.name.split(" ")[1].charAt(0)}
                               </span>
                             </div>
                           ) : <img
@@ -290,7 +326,7 @@ function TestimonialsSection() {
               whileTap={{ scale: 0.95 }}
               className="cursor-pointer px-6 py-2 bg-linear-to-r from-[#008dfe] to-[#faa41a] text-white rounded-full font-semibold text-sm md:text-base shadow-lg hover:shadow-xl transition-all duration-300"
             >
-                Share Feedback
+              Share Feedback
             </motion.button>
           </div>
         </motion.a>
