@@ -50,7 +50,7 @@ const currentBoard = {
     },
     {
       id: 4,
-      name: 'Chahed Requez',
+      name: 'Chahed Reguez',
       title: 'General Secretary',
       image: chahed,
       socials: {
