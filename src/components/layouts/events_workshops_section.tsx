@@ -84,7 +84,7 @@ const events = [
     id: 5,
     title: "CyberSecurity ",
     type: "Workshop",
-    date: "2025-12-02",
+    date: "2025-12-03",
     location: "Annexe Building",
     attendees: 70,
     image: xtreme,
