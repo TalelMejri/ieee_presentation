@@ -62,7 +62,7 @@ const testimonials = [
     role: "Chairman AESS Chapter",
     rating: 5,
     image: iheb,
-    text: "What an  amazing work , hope all of the success for CS chapter , specialy the Chair "
+    text: "What an  amazing work , hope all the success for CS chapter , especially the Chair "
   }
 ];
 
