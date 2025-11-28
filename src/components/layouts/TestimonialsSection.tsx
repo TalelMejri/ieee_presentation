@@ -7,7 +7,18 @@ import ahmed from "@/assets/feedbacks/ahmed.jpg"
 import omar from "@/assets/feedbacks/omar.jpg"
 import ayoub from "@/assets/feedbacks/ayoub.jpg"
 import iheb from "@/assets/feedbacks/iheb.jpg"
+import nour from "@/assets/previousBoard/nour.jpg";
+import yassmin from "@/assets/feedbacks/yassmin.png";
+
 const testimonials = [
+  {
+    id: 0,
+    name: "Nour Elhouda Techini",
+    role: "Previous Chair IEEE CS ENICarthage SBC 2024",
+    image: nour,
+    rating: 5,
+    text: "Serving as The Chairwoman of the IEEE CS ENICarthage SBC was an enriching leadership experience that strengthened our community and expanded our impact. I had the opportunity to work with an exceptional team, launch meaningful initiatives, and support students in developing both their technical and professional skills.",
+  },
   {
     id: 1,
     name: "Issra Akrout",
@@ -63,6 +74,14 @@ const testimonials = [
     rating: 5,
     image: iheb,
     text: "What an  amazing work , hope all the success for CS chapter , especially the Chair "
+  },
+  {
+    id: 8,
+    name: "Yasmine Kallel",
+    role: "General Secretary SB",
+    rating: 5,
+    image: yassmin,
+    text: "Being part of IEEE ENICarthage CS SBC wasn’t only about gaining technical skills and continuous learning, but also about belonging to a hardworking committee that truly values collaboration, innovation, and personal growth. "
   }
 ];
 
