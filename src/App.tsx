@@ -13,6 +13,7 @@ import ProjectsSection from "./components/layouts/ProjectsSection";
 import SocialMediaSection from "./components/layouts/SocialMedia";
 // import simpleNotificationManager from '@/services/simpleNotificationManager';
 import { useEffect } from "react";
+import PartnersSection from "./components/layouts/PartnersSection";
 
 function App() {
   useEffect(() => {
@@ -39,6 +40,7 @@ function App() {
           <ProjectsSection />
           <MembersOfTheMonth />
           <TestimonialsSection />
+                    <PartnersSection />
           <SocialMediaSection />
           <FooterLayout />
         </div>

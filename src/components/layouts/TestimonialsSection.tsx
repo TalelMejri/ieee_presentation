@@ -9,7 +9,7 @@ import ayoub from "@/assets/feedbacks/ayoub.jpg"
 import iheb from "@/assets/feedbacks/iheb.jpg"
 import nour from "@/assets/previousBoard/nour.jpg";
 import yassmin from "@/assets/feedbacks/yassmin.png";
-
+import afrah from "@/assets/feedbacks/afrah.jpg"
 const testimonials = [
   {
     id: 0,
@@ -82,6 +82,14 @@ const testimonials = [
     rating: 5,
     image: yassmin,
     text: "Being part of IEEE ENICarthage CS SBC wasn’t only about gaining technical skills and continuous learning, but also about belonging to a hardworking committee that truly values collaboration, innovation, and personal growth. "
+  },
+  {
+    id: 9,
+    name:"Afrah hedfi",
+    role: "Member",
+    rating: 5,
+    image: afrah,
+    text:"Being part of the IEEE ENICar has been a truly enriching experience. It helped me grow both personally and academically, discover new opportunities, and connect with motivated, inspiring people. I’m grateful for everything this community has offered me and proud to be part of it"
   }
 ];
 
@@ -262,7 +270,7 @@ function TestimonialsSection() {
                       <StarRating rating={testimonial.rating} />
                     </div>
                     <blockquote className="mb-6">
-                      <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm line-clamp-4">
+                      <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm line-clamp-6">
                         "{testimonial.text}"
                       </p>
                     </blockquote>
