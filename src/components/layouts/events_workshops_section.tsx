@@ -92,7 +92,7 @@ const events = [
     status: "upcoming",
     description: "Learn cybersecurity basics Collaboration with Sup'Com Cybersecurity CLUB",
     tags: ["Beginner", "Hands-on"],
-    registrationLink: ""
+    registrationLink: "https://forms.gle/GYSM3G8N8HYwFwNx5"
   },
 ];
 
