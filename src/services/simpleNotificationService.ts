@@ -211,7 +211,6 @@ class NotificationService {
     }
   }
 
-  // Check and send scheduled notifications - FIXED WITH NULL CHECKS
   private async checkScheduledNotifications(): Promise<void> {
     try {
       const scheduled: ScheduledNotification[] = JSON.parse(

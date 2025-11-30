@@ -18,10 +18,10 @@ export const NOTIFICATION_TEMPLATES = {
   EVENT_REGISTRATION: (eventName: string): NotificationTemplate => ({
     title: '📅 Registration Open!',
     body: `"${eventName}" - Register now and secure your spot! Don't miss out!`,
-    data: { url: '/events' },
-    actions: [
-      { action: 'register', title: 'Register Now' }
-    ]
+    data: { url: 'https://forms.gle/GYSM3G8N8HYwFwNx5' },
+    // actions: [
+    //   { action: 'https://forms.gle/GYSM3G8N8HYwFwNx5', title: 'Register Now' }
+    // ]
   }),
   
   EVENT_REMINDER: (eventName: string, timeLeft: string): NotificationTemplate => ({
