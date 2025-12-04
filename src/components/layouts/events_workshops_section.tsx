@@ -89,7 +89,7 @@ const events = [
     attendees: 70,
     image: xtreme,
     category: "CyberSecurity",
-    status: "upcoming",
+    status: "completed",
     description: "Learn cybersecurity basics Collaboration with Sup'Com Cybersecurity CLUB",
     tags: ["Beginner", "Hands-on"],
     registrationLink: "https://forms.gle/GYSM3G8N8HYwFwNx5"

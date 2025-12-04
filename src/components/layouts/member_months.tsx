@@ -112,7 +112,7 @@ const allMonthsData = {
 };
 
 function MembersOfTheMonth() {
-  const [selectedMonth, setSelectedMonth] = useState("october-2024");
+  const [selectedMonth, setSelectedMonth] = useState("november-2024");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const currentData = allMonthsData[selectedMonth as keyof typeof allMonthsData];
@@ -196,7 +196,7 @@ function MembersOfTheMonth() {
                         }`}
                     >
                       {allMonthsData[monthKey as keyof typeof allMonthsData].month}
-                      {monthKey === "october-2024" && (
+                      {monthKey === "november-2024" && (
                         <span className="ml-2 px-2 py-1 text-xs bg-linear-to-r from-[#008dfe] to-[#faa41a] text-white rounded-full">
                           Current
                         </span>
@@ -217,80 +217,79 @@ function MembersOfTheMonth() {
         </motion.div>
 
         {/* Members Grid */}
-        <div className={`grid gap-8 ${currentData.members.length === 1
-          ? 'grid-cols-1 max-w-md mx-auto'
-          : currentData.members.length === 2
-            ? 'grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto'
-            : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-          }`}>
+        <div
+          className={`grid gap-6 ${currentData.members.length === 1
+              ? 'grid-cols-1 max-w-sm mx-auto'
+              : currentData.members.length === 2
+                ? 'grid-cols-1 md:grid-cols-2 max-w-2xl mx-auto'
+                : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+            }`}
+        >
           {currentData.members.map((member, index) => (
             <motion.div
               key={member.id}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
+              transition={{ duration: 0.5, delay: index * 0.15 }}
               viewport={{ once: true }}
               className="group relative"
             >
               {/* Card */}
-              <div className="relative bg-white dark:bg-gray-800 rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500 overflow-hidden border border-gray-200 dark:border-gray-700 group-hover:scale-105 group-hover:border-[#008dfe]/30 h-full flex flex-col">
+              <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 group-hover:scale-105 flex flex-col">
                 {/* Badge */}
-                <div className="absolute top-4 right-4 z-10">
+                <div className="absolute top-3 right-3 z-10">
                   <motion.div
                     whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="w-12 h-12 bg-linear-to-br from-[#faa41a] to-[#ff8c00] rounded-full flex items-center justify-center shadow-lg"
+                    className="w-10 h-10 bg-linear-to-br from-[#faa41a] to-[#ff8c00] rounded-full flex items-center justify-center shadow-md"
                   >
-                    <Award className="w-6 h-6 text-white" />
+                    <Award className="w-5 h-5 text-white" />
                   </motion.div>
                 </div>
 
-                {/* Image Container with Better Handling */}
-                <div className="relative h-72 overflow-hidden bg-gray-100 dark:bg-gray-700">
+                {/* Image Container */}
+                <div className="relative aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-700 rounded-lg">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover object-center brightness-105 contrast-105 transition-transform duration-500 group-hover:scale-110"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = `https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face&auto=format`;
+                      target.src =
+                        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=faces&auto=format';
                     }}
                   />
-                  {/* linear Overlay */}
-                  <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 flex-1 flex flex-col">
+                <div className="p-4 flex-1 flex flex-col">
                   {/* Name and Role */}
-                  <div className="mb-4 text-center">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                  <div className="mb-3 text-center">
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
                       {member.name}
                     </h3>
-                    <div className="inline-flex items-center gap-2 px-3 py-1 bg-linear-to-r from-[#008dfe]/10 to-[#faa41a]/10 rounded-full border border-[#008dfe]/20">
+                    <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-linear-to-r from-[#008dfe]/10 to-[#faa41a]/10 rounded-full border border-[#008dfe]/20">
                       <div className="w-2 h-2 bg-linear-to-r from-[#008dfe] to-[#faa41a] rounded-full"></div>
-                      <p className="text-[#008dfe] font-semibold text-sm">{member.role}</p>
+                      <p className="text-[#008dfe] font-medium text-xs">{member.role}</p>
                     </div>
                   </div>
 
                   {/* Quote */}
-                  <blockquote className="text-center p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl border border-[#faa41a]/20">
-                    <div className="text-[#faa41a] text-lg mb-2">"</div>
-                    <p className="text-gray-600 dark:text-gray-300 italic text-sm leading-relaxed">
+                  <blockquote className="text-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-[#faa41a]/20">
+                    <div className="text-[#faa41a] text-base mb-1">"</div>
+                    <p className="text-gray-600 dark:text-gray-300 italic text-xs leading-relaxed">
                       {member.quote}
                     </p>
                   </blockquote>
-
-                  {/* Decorative Elements */}
-                  <div className="absolute top-2 left-2 w-6 h-6 border-t-2 border-l-2 border-[#008dfe] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  <div className="absolute bottom-2 right-2 w-6 h-6 border-b-2 border-r-2 border-[#faa41a] opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200"></div>
                 </div>
 
                 {/* Shine Effect */}
-                <div className="absolute inset-0 rounded-3xl bg-linear-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </div>
             </motion.div>
           ))}
         </div>
+
 
         {/* Footer Note */}
         <motion.div
