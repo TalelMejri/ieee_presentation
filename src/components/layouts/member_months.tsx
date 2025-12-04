@@ -8,7 +8,36 @@ import eya from "@/assets/member_month/september2025/eya.png"
 import narmine from "@/assets/member_month/september2025/narmine.jpg"
 import wassim from "@/assets/member_month/september2025/wassim.jpg"
 import sahar from "@/assets/member_month/february2025/sahar.png"
+import hiba from "@/assets/member_month/november2025/hiba.png"
+import roua from "@/assets/member_month/november2025/roua.jpg"
+import tasnim from "@/assets/member_month/november2025/tasnim.jpg"
 const allMonthsData = {
+  "november-2024": {
+    month: "November 2025",
+    members: [
+      {
+        id: 1,
+        name: "Hiba Ghozi",
+        role: "Member",
+        image: hiba,
+        quote: "Great things are done by a series of small things brought together.",
+      },
+      {
+        id: 2,
+        name: "Tasnim saidi",
+        role: "Member",
+        image: tasnim,
+        quote: "Excellence is not a skill, it's an attitude.",
+      },
+      {
+        id: 3,
+        name: "Roua Ben Fraj",
+        role: "Member",
+        image: roua,
+        quote: "The only way to do great work is to love what you do.",
+      }
+    ]
+  },
   "october-2024": {
     month: "October 2025",
     members: [
