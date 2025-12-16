@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Star, Award, Calendar, ChevronDown } from "lucide-react";
+import { Star, Award, Calendar, ChevronDown, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import issra from "@/assets/member_month/issra.png";
 import omar from "@/assets/member_month/omar.jpg";
@@ -11,6 +11,7 @@ import sahar from "@/assets/member_month/february2025/sahar.png"
 import hiba from "@/assets/member_month/november2025/hiba.png"
 import roua from "@/assets/member_month/november2025/roua.jpg"
 import tasnim from "@/assets/member_month/november2025/tasnim.jpg"
+
 const allMonthsData = {
   "november-2024": {
     month: "November 2025",
@@ -24,7 +25,7 @@ const allMonthsData = {
       },
       {
         id: 2,
-        name: "Tasnim saidi",
+        name: "Tasnim Saidi",
         role: "Member",
         image: tasnim,
         quote: "Excellence is not a skill, it's an attitude.",
@@ -114,6 +115,7 @@ const allMonthsData = {
 function MembersOfTheMonth() {
   const [selectedMonth, setSelectedMonth] = useState("november-2024");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [activeCard, setActiveCard] = useState<number | null>(null);
 
   const currentData = allMonthsData[selectedMonth as keyof typeof allMonthsData];
   const monthKeys = Object.keys(allMonthsData);
@@ -153,9 +155,10 @@ function MembersOfTheMonth() {
         >
           {/* Month Selection */}
           <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            transition={{ delay: 0.2, type: "spring" }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
             className="inline-flex flex-col items-center gap-4 mb-6"
           >
             <div className="relative">
@@ -169,8 +172,7 @@ function MembersOfTheMonth() {
                 </span>
                 <ChevronDown
                   size={16}
-                  className={`text-[#faa41a] transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''
-                    }`}
+                  className={`text-[#faa41a] transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
                 />
               </button>
 
@@ -216,80 +218,104 @@ function MembersOfTheMonth() {
           </p>
         </motion.div>
 
-        {/* Members Grid */}
-        <div
-          className={`grid gap-6 ${currentData.members.length === 1
-              ? 'grid-cols-1 max-w-sm mx-auto'
-              : currentData.members.length === 2
-                ? 'grid-cols-1 md:grid-cols-2 max-w-2xl mx-auto'
-                : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
-            }`}
-        >
+        <div className={`grid ${currentData.members.length === 1
+          ? 'grid-cols-1  max-w-sm mx-auto '
+          : currentData.members.length === 2
+            ? 'grid-cols-1 md:grid-cols-2 max-w-2xl mx-auto gap-8'
+            : 'grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'
+          } mb-16`}>
           {currentData.members.map((member, index) => (
             <motion.div
               key={member.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.15 }}
-              viewport={{ once: true }}
-              className="group relative"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              className="group"
+              onMouseEnter={() => setActiveCard(member.id)}
+              onMouseLeave={() => setActiveCard(null)}
             >
-              {/* Card */}
-              <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-200 dark:border-gray-700 group-hover:scale-105 flex flex-col">
-                {/* Badge */}
-                <div className="absolute top-3 right-3 z-10">
-                  <motion.div
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    className="w-10 h-10 bg-linear-to-br from-[#faa41a] to-[#ff8c00] rounded-full flex items-center justify-center shadow-md"
-                  >
-                    <Award className="w-5 h-5 text-white" />
-                  </motion.div>
-                </div>
+              <div className="relative bg-gradient-to-br from-white to-blue-50/30 dark:from-gray-800 dark:to-blue-900/10 rounded-2xl p-6 shadow-xl hover:shadow-2xl transition-all duration-500 h-full border border-blue-200/30 dark:border-blue-400/20 hover:border-orange-300/50 dark:hover:border-orange-400/30 overflow-hidden">
 
-                {/* Image Container */}
-                <div className="relative aspect-[4/5] overflow-hidden bg-gray-100 dark:bg-gray-700 rounded-lg">
-                  <img
-                    src={member.image}
-                    alt={member.name}
-                    className="w-full h-full object-cover object-center brightness-105 contrast-105 transition-transform duration-500 group-hover:scale-110"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.src =
-                        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=faces&auto=format';
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent"></div>
-                </div>
-
-                {/* Content */}
-                <div className="p-4 flex-1 flex flex-col">
-                  {/* Name and Role */}
-                  <div className="mb-3 text-center">
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                      {member.name}
-                    </h3>
-                    <div className="inline-flex items-center gap-1 px-2 py-0.5 bg-linear-to-r from-[#008dfe]/10 to-[#faa41a]/10 rounded-full border border-[#008dfe]/20">
-                      <div className="w-2 h-2 bg-linear-to-r from-[#008dfe] to-[#faa41a] rounded-full"></div>
-                      <p className="text-[#008dfe] font-medium text-xs">{member.role}</p>
-                    </div>
+                {/* Photo Section */}
+                <div className="relative mb-6">
+                  <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl">
+                    <img
+                      src={member.image}
+                      alt={member.name}
+                      className="w-full h-full object-cover object-center"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.src = `https://images.unsplash.com/photo-${['1472099645785', '1494790108759', '1507003211169'][index % 3]}-w=400&h=400&fit=crop&crop=faces&auto=format`;
+                      }}
+                    />
                   </div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-orange-500/20 rounded-full w-32 h-32 mx-auto"></div>
 
-                  {/* Quote */}
-                  <blockquote className="text-center p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg border border-[#faa41a]/20">
-                    <div className="text-[#faa41a] text-base mb-1">"</div>
-                    <p className="text-gray-600 dark:text-gray-300 italic text-xs leading-relaxed">
+                  {/* Badge */}
+                  <div className="absolute -top-2 -right-2 z-10">
+                    <motion.div
+                      animate={activeCard === member.id ? { rotate: [0, 10, -10, 0] } : {}}
+                      transition={{ duration: 0.5 }}
+                      className="w-10 h-10 bg-gradient-to-r from-[#008dfe] to-[#faa41a] rounded-full flex items-center justify-center shadow-lg"
+                    >
+                      <Award className="w-5 h-5 text-white" />
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Person Info */}
+                <div className="mb-6 text-center">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    {member.name}
+                  </h3>
+                  <p className="bg-linear-to-r from-[#008dfe] to-[#faa41a] bg-clip-text text-transparent font-medium text-sm mb-3">
+                    {member.role}
+                  </p>
+
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-[#008dfe]/10 to-[#faa41a]/10 rounded-full">
+                    <Star className="w-3 h-3 text-[#faa41a]" />
+                    <span className="text-xs font-semibold text-gray-700 dark:text-gray-300">
+                      Member of the Month
+                    </span>
+                  </div>
+                </div>
+
+                {/* Quote Section */}
+                <div className="relative mb-6">
+                  <div className="absolute -top-2 -left-2 text-2xl text-[#008dfe]">"</div>
+                  <div className="pl-4 pt-2 pr-4">
+                    <p className="text-gray-600 dark:text-gray-400 italic text-sm leading-relaxed text-center">
                       {member.quote}
                     </p>
-                  </blockquote>
+                  </div>
+                  <div className="absolute -bottom-2 -right-2 text-2xl text-[#faa41a]">"</div>
                 </div>
 
-                {/* Shine Effect */}
-                <div className="absolute inset-0 rounded-2xl bg-linear-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+                {/* Interactive Buttons */}
+                <div className="flex justify-center gap-4 mt-6">
+                  <motion.button
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="p-2 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-full transition-colors"
+                  >
+                    <MessageCircle className="w-5 h-5 text-[#008dfe]" />
+                  </motion.button>
+                  <motion.button
+                    whileHover={{ scale: 1.2 }}
+                    whileTap={{ scale: 0.9 }}
+                    className="p-2 hover:bg-orange-50 dark:hover:bg-orange-900/20 rounded-full transition-colors"
+                  >
+                    <Star className="w-5 h-5 text-[#faa41a]" fill="currentColor" />
+                  </motion.button>
+                </div>
+
+                {/* Shimmer Effect */}
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
               </div>
             </motion.div>
           ))}
         </div>
-
 
         {/* Footer Note */}
         <motion.div
@@ -309,13 +335,14 @@ function MembersOfTheMonth() {
             <Star className="w-4 h-4 text-[#faa41a]" />
             <span className="text-sm font-medium text-gray-600 dark:text-gray-300">
               {selectedMonth === "october-2024"
-                ? "Next selection: November 2025"
+                ? "Next selection: December 2025"
                 : `Viewing: ${currentData.month}`
               }
             </span>
           </motion.div>
         </motion.div>
       </div>
+
       {isDropdownOpen && (
         <div
           className="fixed inset-0 z-40"
