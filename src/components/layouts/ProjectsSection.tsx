@@ -23,7 +23,7 @@ const projects = [
         editions: [
             { version: "1st Edition", year: "2024", participants: "15+ Authors", status: "completed", link: "https://online.fliphtml5.com/uixbf/dmhq/?fbclid=IwY2xjawOOqBpleHRuA2FlbQIxMABicmlkETFxempBN0VuVlFDVkJPSm1Dc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHs01dEWrD8eUtqy63Xr_u6n9Fukgw_D9HAuJq0ISoHfth4VioNOB0XCWg7a1_aem_xLhxxtDcsGRMbH7fd1UBHg#p=1" },
             { version: "2nd Edition", year: "2025", participants: "20+ Authors", status: "completed", link: "https://online.fliphtml5.com/hxrtj/dvjo/?fbclid=IwY2xjawOOqB1leHRuA2FlbQIxMABicmlkETFxempBN0VuVlFDVkJPSm1Dc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHrE_QeRHCiY3a4kwPMoucEGxCPRoJQP2hW8XWwlAp0WklZg9HQMGuyEy5rDx_aem_DofHND0rjWKAMZCRiU-TqA#p=1" },
-            { version: "3rd Edition", year: "Coming Soon", participants: "25+ Expected", status: "upcoming" }
+            { version: "3rd Edition", year: "2026", participants: "20+ Authors", status: "completed", Link: "https://online.fliphtml5.com/ewflo/qojr/?fbclid=IwY2xjawPXrlFleHRuA2FlbQIxMQBicmlkETFBd3NxcGw4M1hQeTdKMHRtc3J0YwZhcHBfaWQBMAABHvT9rp5d5RJwoROk2SCKPIukzNR4iXl6iVcGRpugMWWz4XLdt96W1CPInv0N_aem_cJvup6vCXyMXoloConS72Q#p=1" }
         ],
         images: [code_spectrum1, code_spectrum12, code_spectrum21, code_spectrum22],
         technologies: ["AI & Machine Learning", "Cybersecurity", "5G to 6G Transition", "Industry 4.0", "Ethical AI", "Software Development"],
