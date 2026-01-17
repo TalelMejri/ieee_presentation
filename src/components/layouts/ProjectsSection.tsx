@@ -5,6 +5,7 @@ import code_spectrum1 from "@/assets/projects/codespectrum1.png"
 import code_spectrum12 from "@/assets/projects/codespectrum12.png"
 import code_spectrum21 from "@/assets/projects/codespctrum2.jpg"
 import code_spectrum22 from "@/assets/projects/codespctrum21.jpg"
+import code_spectrum3 from "@/assets/projects/codespectrum3.png"
 import cstime from "@/assets/projects/cstime/1.png"
 import cstime2 from "@/assets/projects/cstime/2.png"
 import cstime3 from "@/assets/projects/cstime/3.png"
@@ -23,9 +24,9 @@ const projects = [
         editions: [
             { version: "1st Edition", year: "2024", participants: "15+ Authors", status: "completed", link: "https://online.fliphtml5.com/uixbf/dmhq/?fbclid=IwY2xjawOOqBpleHRuA2FlbQIxMABicmlkETFxempBN0VuVlFDVkJPSm1Dc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHs01dEWrD8eUtqy63Xr_u6n9Fukgw_D9HAuJq0ISoHfth4VioNOB0XCWg7a1_aem_xLhxxtDcsGRMbH7fd1UBHg#p=1" },
             { version: "2nd Edition", year: "2025", participants: "20+ Authors", status: "completed", link: "https://online.fliphtml5.com/hxrtj/dvjo/?fbclid=IwY2xjawOOqB1leHRuA2FlbQIxMABicmlkETFxempBN0VuVlFDVkJPSm1Dc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHrE_QeRHCiY3a4kwPMoucEGxCPRoJQP2hW8XWwlAp0WklZg9HQMGuyEy5rDx_aem_DofHND0rjWKAMZCRiU-TqA#p=1" },
-            { version: "3rd Edition", year: "2026", participants: "20+ Authors", status: "completed", Link: "https://online.fliphtml5.com/ewflo/qojr/?fbclid=IwY2xjawPXrlFleHRuA2FlbQIxMQBicmlkETFBd3NxcGw4M1hQeTdKMHRtc3J0YwZhcHBfaWQBMAABHvT9rp5d5RJwoROk2SCKPIukzNR4iXl6iVcGRpugMWWz4XLdt96W1CPInv0N_aem_cJvup6vCXyMXoloConS72Q#p=1" }
+            { version: "3rd Edition", year: "2026", participants: "20+ Authors", status: "completed", link: "https://online.fliphtml5.com/ewflo/qojr/?fbclid=IwY2xjawPXry5leHRuA2FlbQIxMQBicmlkETFBd3NxcGw4M1hQeTdKMHRtc3J0YwZhcHBfaWQBMAABHg7-o2W5jPUC2-LWut9uUfpvlh9-Zdwhp97hT4MULLXVibukDgyvgJJ6xwwD_aem_ugHFiuKvRfaKEH1ZS9Qsag#p=1" }
         ],
-        images: [code_spectrum1, code_spectrum12, code_spectrum21, code_spectrum22],
+        images: [code_spectrum1, code_spectrum12, code_spectrum21, code_spectrum22, code_spectrum3],
         technologies: ["AI & Machine Learning", "Cybersecurity", "5G to 6G Transition", "Industry 4.0", "Ethical AI", "Software Development"],
         category: "Tech Magazine",
         icon: BookOpen,
@@ -265,14 +266,14 @@ function ProjectsSection() {
                                         </p>
 
                                         {/* Magazine Editions */}
-                                        {project.title === "Our Magazine" && (
+                                        {project.id === 1 && project.editions && (  
                                             <div className="mb-4">
                                                 <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-2 flex items-center gap-2">
                                                     <BookOpen className="w-4 h-4" />
                                                     Editions
                                                 </h4>
                                                 <div className="flex flex-wrap gap-2">
-                                                    {project.editions?.map((edition, idx) => (
+                                                    {project.editions.map((edition, idx) => (
                                                         <motion.a
                                                             key={idx}
                                                             href={edition.link || "#"}
@@ -281,8 +282,8 @@ function ProjectsSection() {
                                                             whileHover={{ scale: 1.05 }}
                                                             whileTap={{ scale: 0.95 }}
                                                             className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 ${edition.status === 'completed'
-                                                                ? 'bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-lg'
-                                                                : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400'
+                                                                    ? 'bg-linear-to-r from-blue-500 to-cyan-500 text-white shadow-lg hover:shadow-xl'
+                                                                    : 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600'
                                                                 }`}
                                                         >
                                                             <Eye className="w-3 h-3" />
