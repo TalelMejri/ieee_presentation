@@ -126,7 +126,8 @@ const previousBoards = [
         },
       },
     ]
-  }
+  },
+  
 ]
 
 export function TeamSection() {

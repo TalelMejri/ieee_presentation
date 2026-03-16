@@ -94,6 +94,7 @@ const events = [
     tags: ["Beginner", "Hands-on"],
     registrationLink: "https://forms.gle/GYSM3G8N8HYwFwNx5"
   },
+  
 ];
 
 function EventsWorkshopsSection() {
