@@ -11,23 +11,11 @@ import TestimonialsSection from "./components/layouts/TestimonialsSection";
 import AwardsSection from "./components/layouts/AwardsSection";
 import ProjectsSection from "./components/layouts/ProjectsSection";
 import SocialMediaSection from "./components/layouts/SocialMedia";
- import simpleNotificationManager from '@/services/simpleNotificationManager';
-import { useEffect } from "react";
 import PartnersSection from "./components/layouts/PartnersSection";
 import PersonalThanksSection from "./components/layouts/PersonalThanksSection";
 
 function App() {
-  useEffect(() => {
-    const open = localStorage.getItem("cyberSecurity");
-    if (!open) {
-      {
-        setTimeout(() => {
-          simpleNotificationManager.sendEventRegistrationNotification("CyberSecurity Workshop");
-        }, 2000);
-        localStorage.setItem("cyberSecurity", "true");
-      }
-    }
-  }, []);
+ 
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
       <LanguageProvider>
